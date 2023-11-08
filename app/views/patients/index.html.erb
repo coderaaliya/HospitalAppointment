@@ -1,0 +1,28 @@
+<div class="container text-center custom-container1">
+  <% if @patient %>
+    <h1 class="mt-5 welcome-heading1">Welcome, <%= @patient.name %></h1>
+
+    <% if @appointments.any? %>
+      <h2 class="mt-4 appointments-heading">Your Appointments:</h2>
+      <ul class="list-group mt-3">
+        <% @appointments.each do |appointment| %>
+          <li class="list-group-item appointment-item">
+            <% if appointment.date %>
+              <%= appointment.date.strftime("%B %d, %Y") %>  
+            <% else %>
+              Date not available - 
+            <% end %>
+            <%= link_to "Appointment Details", patient_path(appointment.patient), class: "btn btn-primary btn-sm float-right appointment-details-button" %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="mt-4">You don't have any appointments yet.</p>
+    <% end %>
+    <%= link_to "See All Doctors", doctors_showall_path(current_user), class: "btn btn-success mt-4 book-appointment-button" %>
+
+    <%= link_to "Book an Appointment", book_appointment_patient_path(current_user), class: "btn btn-success mt-4 book-appointment-button" %>
+  <% else %>
+    <p class="mt-5">You must be signed in as a patient to view this page.</p>
+  <% end %>
+</div>

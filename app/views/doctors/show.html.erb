@@ -1,0 +1,14 @@
+<div class="container text-center custom-container1">
+  <h1 class="custom-heading1">Doctor's Details</h1>
+  <p class="custom-text1">Name: <%= @doctor.name %></p>
+  <p class="custom-text1">Specialization: <%= @doctor.specialization %></p>
+  <p class="custom-text1">Email: <%= @doctor.email %></p>
+  <p class="custom-text1">Experience: <%= @doctor.experience %></p>
+  <p class="custom-text1">About: <%= @doctor.description %></p>
+  <!-- Add more doctor details here if needed -->
+  <% if current_user.is_a?(Patient) %>
+          <%= link_to 'Go Back To Book Appointment', patients_path, class: 'btn btn-primary' %>
+        <% else %>
+          <%= link_to 'Go Back To Dashboard', dashboard_assistant_path, class: 'btn btn-primary' %>
+        <% end %>
+</div>

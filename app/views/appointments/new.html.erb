@@ -1,0 +1,34 @@
+<!-- app/views/appointments/new.html.erb -->
+
+<div class="container-fluid py-3 book-appointment-page">
+  <div class="container">
+    <div class="row justify-content-center"> <!-- Center the form -->
+      <div class="col-lg-8">
+        <div class="bg-light p-4"> <!-- Container with background color -->
+          <h1 class="display-6 text-center mb-4 custom-title-font">New Appointment</h1>
+          <%= form_with(model: @appointment, url: appointments_path) do |form| %>
+            <div class="field">
+              <%= form.label :date, class: "form-label" %>
+              <%= form.datetime_field :date, class: "form-control", id: "date" %>
+            </div>
+
+            <div class="field">
+              <%= form.label :doctor_id, class: "form-label" %>
+              <%= form.collection_select(:doctor_id, Doctor.all, :id, :name, { prompt: 'Select a doctor' }, class: "form-select custom-select-style", id: "doctor") %>
+            </div>
+
+            <div class="field">
+              <%= form.label :assistant_id, class: "form-label" %>
+              <%= form.collection_select(:assistant_id, Assistant.all, :id, :name, { prompt: "doctor's Assistant" }, class: "form-select custom-select-style", id: "assistant") %>
+            </div>
+
+            <%= form.submit "Create Appointment", class: "btn btn-primary custom-button-style" %>
+          <% end %>
+
+          <%= link_to 'Back', appointments_path, class: "btn btn-primary mt-4 custom-button" %>
+        </div> <!-- End of container with background color -->
+      </div>
+    </div>
+  </div>
+</div>
+<%= link_to 'Back', appointments_path %>

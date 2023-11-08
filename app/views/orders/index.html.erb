@@ -1,0 +1,11 @@
+<h1>Your Orders</h1>
+
+<% if @orders.present? %>
+  <ul>
+    <% @orders.each do |order| %>
+      <li><%= link_to "Order ##{order.id}", order %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have no orders.</p>
+<% end %>

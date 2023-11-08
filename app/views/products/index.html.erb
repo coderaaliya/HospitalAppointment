@@ -1,0 +1,21 @@
+<h1>Products</h1>
+
+<div id="products" class="product-container">
+  <% @products.each do |product| %>
+    <div class="product">
+      <%= render product %>
+      <p>
+        <%= link_to "Show this product", product %>
+        <% unless current_user.type == "Admin" %>
+        <%= button_to 'Add to Cart', cart_items_path(product_id: product.id), method: :post, class: 'btn btn-primary' %>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+
+<% if current_user.type == "Admin" %>
+  
+<%= link_to "New product", new_product_path %>
+<% end %>

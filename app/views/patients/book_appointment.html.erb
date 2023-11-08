@@ -1,0 +1,43 @@
+<div class="container-fluid py-3 book-appointment-page">
+  <div class="container">
+    <div class="row justify-content-center"> <!-- Center the form -->
+      <div class="col-lg-8">
+        <div class="bg-light p-4"> <!-- Container with background color -->
+          <h1 class="display-6 text-center mb-4 custom-title-font">Book an Appointment</h1>
+          <%= form_with(model: [@patient, @appointment], url: appointments_path, class: "row g-3") do |form| %>
+            <div class="col-sm-6">
+              <div class="form-floating">
+                <%= form.datetime_field :date, class: "form-control custom-date-time-field", id: "date", placeholder: "Select Date" %>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-floating">
+                <%= form.collection_select :doctor_id, @doctors, :id, :name, { prompt: 'Select a doctor' }, { class: "form-select custom-select-style", id: "doctor", placeholder: 'Select a doctor' } %>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-floating">
+                <%= form.collection_select :assistant_id, @assistants, :id, :name, { prompt: "doctor's Assistant" }, { class: "form-select custom-select-style", id: "assistant", placeholder: 'Select an assistant' } %>
+              </div>
+            </div>
+
+            <div class="col-12">
+            <div class="form-floating">
+              <%= form.text_area :message, class: "form-control", id: "message", placeholder: "Leave a message here", style: "height: 130px" %>
+            </div>
+          </div>
+
+
+            <div class="col-12 text-center">
+              <%= form.submit "Book Appointment", class: "btn btn-primary w-100 py-3 custom-button-style" %>
+              <%= link_to 'Back', patient_path, class: "btn btn-primary mt-4 custom-button" %>
+
+            </div>
+          <% end %>
+        </div> <!-- End of container with background color -->
+      </div>
+    </div>
+  </div>
+</div>

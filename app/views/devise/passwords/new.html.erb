@@ -1,0 +1,23 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title text-center">Forgot your password?</h2>
+
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-signin" }) do |f| %>
+        <%= render "users/shared/error_messages", resource: resource %>
+
+        <div class="form-group field">
+          <%= f.label :email, class: "custom-label" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "custom-input" %>
+        </div>
+    
+
+        <div class="form-group actions">
+          <%= f.submit "Reset password", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+
+      <%= render "users/shared/links" %>
+    </div>
+  </div>
+</div>

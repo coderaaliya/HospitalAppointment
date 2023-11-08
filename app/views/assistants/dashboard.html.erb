@@ -1,0 +1,25 @@
+<div class="container text-center custom-container1">
+    <h1 class="custom-heading1">Welcome, <%= @assistant.name %></h1>
+
+  <h2 class="mt-4 appointments-heading">Appointments:</h2>
+  <% if @appointments.any? %>
+    <ul class="list-unstyled">
+      <% @appointments.each do |appointment| %>
+          <li class="list-group-item appointment-item">
+          <% if appointment.date %>
+            <%= appointment.date.strftime("%B %d, %Y %I:%M %p") %> <br>
+          <% else %> 
+            Date not available -
+          <% end %>
+          Doctor: <%= link_to appointment.doctor.name, doctor_path(appointment.doctor) %> <br>
+          Patient: <%= appointment.patient.name%> <br>
+          Patient Age: <%= appointment.patient.age %> <br>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="custom-text1">You don't have any appointments yet.</p>
+  <% end %>
+
+  <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-primary custom-button" %>
+</div>

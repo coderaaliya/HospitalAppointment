@@ -1,0 +1,25 @@
+<div id="<%= dom_id product %>">
+  <p>
+    <strong>Name:</strong>
+    <%= product.name %>
+  </p>
+
+  <p>
+    <% if product.image.attached? %>
+    <%= image_tag product.image, class: "img-fluid2"%>
+    <% end %>
+
+  </p>
+
+    <p>
+    <strong>Mrp:</strong>
+    <%= product.price %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= product.description %>
+  </p>
+
+</div>
+  

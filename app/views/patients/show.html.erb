@@ -1,0 +1,35 @@
+<div class="container text-center custom-container1">
+  <h1 class="custom-heading1">Patient Details</h1>
+
+  <p class="custom-text1">Name: <%= @patient.name %></p>
+  <p class="custom-text1">Email: <%= @patient.email %></p>
+  <p class="custom-text1">Age: <%= @patient.age %></p>
+  <!-- Add more patient details here -->
+
+  <h2 class="custom-heading1">Your Appointments:</h2>
+  <% if @appointments.any? %>
+    <ul class="list-unstyled">
+      <% @appointments.each do |appointment| %>
+        <li class="custom-list-item1">
+          <% if appointment.date %>
+            <div class="appointment-info-box">
+              <span class="custom-text1">Appointment Date and Time: <%= appointment.date.strftime("%B %d, %Y %I:%M %p") %></span>
+
+              <span class="custom-text1">Doctor: <%= link_to appointment.doctor.name, doctor_path(appointment.doctor) %></span> <br>
+              <span class="custom-text1">Assistant: <%= appointment.assistant.name %></span> <br>
+              <%= button_to 'Delete Appointment', destroy_appointment_patient_path(current_user, appointment), method: :delete, data: { confirm: 'Are you sure you want to delete this appointment?' }, class: 'btn btn-primary mt-2' %>
+
+            </div>
+          <% else %>
+            Date not available -
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="custom-text1">You don't have any appointments yet.</p>
+  <% end %>
+
+  <%= link_to "Book an Appointment", book_appointment_patient_path(current_user), class: "btn btn-success mt-4 book-appointment-button custom-button" %>
+  <%= link_to 'Back', patients_path, class: "btn btn-primary mt-4 custom-button" %>
+</div>

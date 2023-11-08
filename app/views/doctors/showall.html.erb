@@ -1,0 +1,22 @@
+<div class="container text-center custom-container2">
+  <h1 class="custom-heading1">Our Doctor's </h1>
+
+  <div class="doctors-container">
+    <% @doctors.each do |doctor| %>
+      <div class="doctor-details">
+        <p class="custom-heading1">Name: <%= doctor.name %></p>
+        <p class="custom-text1">Specialization: <%= doctor.specialization %></p>
+        <p class="custom-text1">Email: <%= doctor.email %></p>
+        <p class="custom-text1">Experience: <%= doctor.experience %></p>
+        <p class="custom-text1">About: <%= doctor.description %></p>
+        <!-- Add more doctor details here if needed -->
+      </div>
+    <% end %>
+  </div>
+  <% if current_user.is_a?(Patient) %>
+          <%= link_to 'Go Back To Book Appointment', patients_path, class: 'btn btn-primary' %>
+        <% else %>
+
+        <% end %>
+  
+</div>

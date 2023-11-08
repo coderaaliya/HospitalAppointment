@@ -1,0 +1,16 @@
+
+<h1>Order Items</h1>
+
+<% if @order_items.present? %>
+  <ul>
+    <% @order_items.each do |order_item| %>
+      <li>
+        <%= order_item.product.name %> -
+        Quantity: <%= order_item.quantity %> -
+        <%= number_to_currency(order_item.price * order_item.quantity) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No order items found for this order.</p>
+<% end %>

@@ -1,0 +1,14 @@
+
+<h1>Your Cart</h1>
+
+<% if @cart.cart_items.present? %>
+  <ul>
+    <%= render partial: 'cart_items/cart_item', collection: @cart.cart_items %>
+  </ul>
+
+  <p>Total: <%= number_to_currency(@cart.total_price) %></p>
+
+  <%= link_to 'Checkout', checkout_cart_path, class: 'btn btn-primary' %>
+<% else %>
+  <p>Your cart is empty.</p>
+<% end %>
